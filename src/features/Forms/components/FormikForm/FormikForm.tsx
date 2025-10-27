@@ -54,7 +54,7 @@ const FormikForm = () => {
       .required("Confirm password is required"),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = (values:RegistrationFormSchema) => {
     console.log(values)
   }
 

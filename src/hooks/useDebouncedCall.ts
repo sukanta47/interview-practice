@@ -1,19 +1,3 @@
-import React, { useEffect, useState } from "react";
-
-const useDebounceFn = <T extends (...args: any[]) => void>(
-  fn: T,
-  delay = 500
-): ((...args: Parameters<T>) => void) => {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      return fn();
-    }, delay);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [delay, fn]);
-};
 // import { useRef, useEffect, useCallback } from "react";
 
 // export function useDebounceFn<T extends (...args: any[]) => void>(
@@ -45,4 +29,4 @@ const useDebounceFn = <T extends (...args: any[]) => void>(
 // }
 
 
-export default useDebounceFn;
+// export default useDebounceFn;
