@@ -1,30 +1,61 @@
+import { Navigate } from "react-router-dom";
+import TimerAppTabs from "../features/TimerApps/TimerAppTabs";
+import { timerRoutes } from "../features/TimerApps/timerRoutes";
+import { formRoutes } from "../features/Forms/formRoutes";
+import FormTabs from "../features/Forms/FormTabs";
+import DebThrottleTabs from "../features/DebouncingThrottlingApp/DebThrottleTabs";
+import TodoApp from "../features/TodoApp/TodoApp";
+import ListSwapping from "../features/ListSwapping/ListSwapping";
+import { debounceRoutes } from "../features/DebouncingThrottlingApp/debounceRoutes";
+import ReactVirtualization from "../features/Virtualization/ReactVirtualization";
+import Calculator from "../features/Calculator/Calculator";
+
 export const NavRoutes = [
   {
-    path: "timer",
-    element: "Timer App",
+    index: true,
+    element: <Navigate to="timer" replace />,
   },
   {
-    path: "debouncing",
-    element: "Debouncing",
+    path: "timer",
+    element: <TimerAppTabs />,
+    children: [...timerRoutes],
+  },
+  {
+    path: "forms",
+    element: <FormTabs />,
+    children: [...formRoutes],
+  },
+  {
+    path: "debouncing-throttling",
+    element: <DebThrottleTabs />,
+    children: [...debounceRoutes],
   },
   {
     path: "todo-list",
-    element: "Todo List",
+    element: <TodoApp />,
   },
   {
-    path: "swapping",
-    element: "List Swapping",
+    path: "list-swapping",
+    element: <ListSwapping />,
   },
   {
-    path: "redux-toolkit",
-    element: "Redux Toolkit",
+    path: "calculator",
+    element: <Calculator />,
   },
   {
     path: "context-api",
-    element: "Context API",
+    element: <ListSwapping />,
   },
   {
-    path: "router-app",
-    element: "Route App",
+    path: "route-app",
+    element: <ListSwapping />,
+  },
+  {
+    path: "redux-toolkit",
+    element: <ListSwapping />,
+  },
+  {
+    path: "virtualization",
+    element: <ReactVirtualization />,
   },
 ];

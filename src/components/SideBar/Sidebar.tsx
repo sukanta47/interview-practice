@@ -13,7 +13,7 @@ const Sidebar = () => {
       title: "Forms",
     },
     {
-      to: "/debouncing",
+      to: "/debouncing-throttling",
       title: "Debouncing",
     },
     {
@@ -35,6 +35,14 @@ const Sidebar = () => {
     {
       to: "/router-app",
       title: "Route App",
+    },
+    {
+      to: "/calculator",
+      title: "Calculator",
+    },
+    {
+      to:"/virtualization",
+      title:"React Virtualization"
     }
   ];
 
