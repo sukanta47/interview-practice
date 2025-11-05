@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { useThrottle } from "../hooks/useThrottle";
-import { Target } from "lucide-react";
 
 const ThrottlingApp = () => {
-  const [dataCalled, setDataCalled] = useState(false);
   const [isApiCalling, setIsApiCalling] = useState(false);
   const [normalCount, setNormalCount] = useState(0);
   const [throttleCount, setThrottleCount] = useState(0);
 
-  const getApiData = (setter: () => void, from) => {
+  const getApiData = (setter: () => void, from:string) => {
     const timeId = setTimeout(() => {
       console.log("get data");
       setter();
@@ -17,7 +15,6 @@ const ThrottlingApp = () => {
     }, 1000);
     return () => {
       clearTimeout(timeId);
-      setDataCalled(false);
     };
   };
 
@@ -38,8 +35,7 @@ const ThrottlingApp = () => {
         <button
           className="bg-red-200 text-white p-3"
           onClick={() => {
-            setDataCalled(true);
-            getThrottledFunction(() => setDataCalled(true), "throttle");
+            getThrottledFunction(() => {}, "throttle");
           }}
         >
           Throttled button
