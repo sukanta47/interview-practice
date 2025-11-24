@@ -7,7 +7,7 @@ export type Todo = { id: number; title: string; completed: boolean };
 
 type RowProps = { todos: Todo[] };
 
-const ReactVirtualization = () => {
+export const ReactVirtualization = () => {
   const { data, isLoading } = useFetch<Todo[]>(
     "https://mocki.io/v1/3186e7cf-86de-467e-b00f-0580b81ca95c"
   );
@@ -15,7 +15,10 @@ const ReactVirtualization = () => {
   const TodoItem = ({ index, style, todos }: RowComponentProps<RowProps>) => {
     const todo = todos[index];
     return (
-      <div style={style} className="p-2 border-b border-gray-200 flex justify-between">
+      <div
+        style={style}
+        className="p-2 border-b border-gray-200 flex justify-between"
+      >
         <span>{todo.title}</span>
         <span>{todo.completed ? "✅" : "🕓"}</span>
       </div>
@@ -43,4 +46,4 @@ const ReactVirtualization = () => {
   );
 };
 
-export default ReactVirtualization;
+// export default ReactVirtualization;

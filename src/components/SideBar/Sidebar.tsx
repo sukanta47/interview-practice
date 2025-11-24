@@ -5,8 +5,16 @@ import type { NavItems } from "../ui/Navbar";
 const Sidebar = () => {
   const sideNavItems: NavItems[] = [
     {
+      to: "array-programs",
+      title: "Array Programs",
+    },
+    {
       to: "/timer",
       title: "Timer App",
+    },
+    {
+      to: "/calculator",
+      title: "Calculator",
     },
     {
       to: "/forms",
@@ -25,31 +33,29 @@ const Sidebar = () => {
       title: "List Swapping",
     },
     {
+      to: "/products",
+      title: "Products",
+    },
+    {
+      to: "/infinite-scroll",
+      title: "Infinite Scroll",
+    },
+    {
+      to: "/virtualization",
+      title: "React Virtualization",
+    },
+    {
       to: "/redux-toolkit",
       title: "Redux Toolkit",
     },
-    {
-      to: "/context-api",
-      title: "Context API",
-    },
-    {
-      to: "/router-app",
-      title: "Route App",
-    },
-    {
-      to: "/calculator",
-      title: "Calculator",
-    },
-    {
-      to:"/virtualization",
-      title:"React Virtualization"
-    }
   ];
 
   return (
-    <div className="w-1/5 min-w-[13rem] p-2 flex flex-col gap-5 bg-[#c0bfc1] shadow-md h-full">
-      <div className=" py-2 px-4 text-violet-600 text-lg font-semibold border-b border-b-2 border-violet-600">Interview Practice</div>
-      <div className="h-[32rem] p-2 overflow-auto">
+    <div className="w-1/5 min-w-[13rem] p-2 flex flex-col gap-5 bg-[#c0bfc1] shadow-md">
+      <div className=" py-2 px-4 text-violet-600 text-lg font-semibold border-b border-b-2 border-violet-600">
+        Interview Practice
+      </div>
+      <div className="h-[calc(94vh - 4rem)] p-2 overflow-y-auto">
         <SideNavItems sideNavItems={sideNavItems} />
       </div>
     </div>

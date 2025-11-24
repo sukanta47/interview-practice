@@ -7,7 +7,6 @@ interface SideNavItemsProps {
 }
 
 const SideNavItems: React.FC<SideNavItemsProps> = ({ sideNavItems }) => {
-
   return (
     <nav className="flex flex-col gap-2">
       {sideNavItems.map((_nav, index) => (
@@ -15,7 +14,7 @@ const SideNavItems: React.FC<SideNavItemsProps> = ({ sideNavItems }) => {
           className={({ isActive }) =>
             `py-2 px-4 rounded-md cursor-pointer hover:scale-105 duration-200 ease-in-out ${
               isActive
-                ? "border border-purple-600 text-purple-600 bg-white shadow-lg"
+                ? "border border-purple-600 text-white bg-purple-600 shadow-lg"
                 : "text-purple-600 bg-white"
             }`
           }

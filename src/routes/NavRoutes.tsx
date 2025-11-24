@@ -1,14 +1,36 @@
-import { Navigate } from "react-router-dom";
-import TimerAppTabs from "../features/TimerApps/TimerAppTabs";
+import React, { lazy } from "react";
 import { timerRoutes } from "../features/TimerApps/timerRoutes";
 import { formRoutes } from "../features/Forms/formRoutes";
-import FormTabs from "../features/Forms/FormTabs";
-import DebThrottleTabs from "../features/DebouncingThrottlingApp/DebThrottleTabs";
-import TodoApp from "../features/TodoApp/TodoApp";
-import ListSwapping from "../features/ListSwapping/ListSwapping";
 import { debounceRoutes } from "../features/DebouncingThrottlingApp/debounceRoutes";
-import ReactVirtualization from "../features/Virtualization/ReactVirtualization";
-import Calculator from "../features/Calculator/Calculator";
+import { Navigate } from "react-router-dom";
+const Products = lazy(() => import("../features/ProductListing/ProductsPage"));
+const ProductDetails = lazy(
+  () => import("../features/ProductListing/ProductDetails")
+);
+const ProblemDetails = lazy(
+  () => import("../features/ArrayPrograms/ProblemDetails")
+);
+const ArrayPrograms = lazy(
+  () => import("../features/ArrayPrograms/ArrayPrograms")
+);
+const TimerAppTabs = lazy(() => import("../features/TimerApps/TimerAppTabs"));
+const FormTabs = lazy(() => import("../features/Forms/FormTabs"));
+const DebThrottleTabs = lazy(
+  () => import("../features/DebouncingThrottlingApp/DebThrottleTabs")
+);
+const TodoApp = lazy(() => import("../features/TodoApp/TodoApp"));
+const ListSwapping = lazy(
+  () => import("../features/ListSwapping/ListSwapping")
+);
+const ReactVirtualization = lazy(() =>
+  import("../features/Virtualization/ReactVirtualization").then((module) => ({
+    default: module.ReactVirtualization,
+  }))
+);
+const InfiniteScroll = lazy(
+  () => import("../features/InfiniteScroll/InfiniteScroll")
+);
+const Calculator = lazy(() => import("../features/Calculator/Calculator"));
 
 export const NavRoutes = [
   {
@@ -43,12 +65,20 @@ export const NavRoutes = [
     element: <Calculator />,
   },
   {
-    path: "context-api",
-    element: <ListSwapping />,
+    path: "products",
+    element: <Products />,
   },
   {
-    path: "route-app",
-    element: <ListSwapping />,
+    path: "products/:id/details",
+    element: <ProductDetails />,
+  },
+  {
+    path: "array-programs",
+    element: <ArrayPrograms />,
+  },
+  {
+    path: "array-programs/:programId",
+    element: <ProblemDetails />,
   },
   {
     path: "redux-toolkit",
@@ -57,5 +87,9 @@ export const NavRoutes = [
   {
     path: "virtualization",
     element: <ReactVirtualization />,
+  },
+  {
+    path: "infinite-scroll",
+    element: <InfiniteScroll />,
   },
 ];

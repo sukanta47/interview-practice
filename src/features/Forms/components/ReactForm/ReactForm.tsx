@@ -12,7 +12,7 @@ type RegistrationFormSchema = {
 type FormErrorSchema = Partial<Record<keyof RegistrationFormSchema, string>>;
 
 const ReactForm = () => {
-  const [hasTyped,setHasTyped] =useState(false)
+  const [hasTyped, setHasTyped] = useState(false);
   const initialValue: RegistrationFormSchema = {
     fname: "",
     lname: "",
@@ -41,85 +41,8 @@ const ReactForm = () => {
   });
   const debouncedValue = useDebounce(formData, 300);
 
-  //   const valuesKeysArray = Object.keys(values) as Array<
-  //     keyof RegistrationFormSchema
-  //   >;
-  //   valuesKeysArray.forEach((_k) => {
-  //     if (values[_k] === "") {
-  //       setFormError((prev) => ({
-  //         ...prev,
-  //         [_k]: [`${FieldLabel[_k]} is required`],
-  //       }));
-  //     } else {
-  //       if (_k === "email") {
-  //         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email)) {
-  //           if (formError[_k]?.some((err) => err !== "Invalid email format")) {
-  //             setFormError((prev) => ({
-  //               ...prev,
-  //               [_k]: [...(prev[_k] || []), "Invalid email format"],
-  //             }));
-  //           }
-  //         } else {
-  //           setFormError((prev) => {
-  //             const { [_k]: removed, ...rest } = prev;
-  //             return rest;
-  //           });
-  //         }
-  //       }
-
-  //       if (_k === "age") {
-  //         if (isNaN(Number(values.age)) || Number(values.age) <= 0) {
-  //           if (
-  //             formError[_k]?.some(
-  //               (err) => err !== "Age must be a valid number greater than 0."
-  //             )
-  //           ) {
-  //             setFormError((prev) => ({
-  //               ...prev,
-  //               [_k]: [
-  //                 ...(prev[_k] || []),
-  //                 "Age must be a valid number greater than 0.",
-  //               ],
-  //             }));
-  //           }
-  //         } else {
-  //           setFormError((prev) => {
-  //             const { [_k]: removed, ...rest } = prev;
-  //             return rest;
-  //           });
-  //         }
-  //       }
-
-  //       if (_k === "phone") {
-  //         if (!/^\d{10}$/.test(values.phone)) {
-  //           if (
-  //             formError[_k]?.some(
-  //               (err) => err !== "Phone number must be 10 digits."
-  //             )
-  //           ) {
-  //             setFormError((prev) => ({
-  //               ...prev,
-  //               [_k]: [...(prev[_k] || []), "Phone number must be 10 digits."],
-  //             }));
-  //           }
-  //         } else {
-  //           setFormError((prev) => {
-  //             const { [_k]: removed, ...rest } = prev;
-  //             return rest;
-  //           });
-  //         }
-  //       }
-  //       else {
-  //         setFormError((prev) => {
-  //           const { [_k]: removed, ...rest } = prev;
-  //           return rest;
-  //         });
-  //       }
-  //     }
-  //   });
-  // };
   useEffect(() => {
-    if(!hasTyped) return;
+    if (!hasTyped) return;
     const errors = validateForm(debouncedValue);
     setFormError(errors);
   }, [debouncedValue]);

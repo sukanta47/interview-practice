@@ -4,6 +4,10 @@ import Navbar, { type NavItems } from "../../components/ui/Navbar";
 const FormTabs = () => {
   const formNavItems: NavItems[] = [
     {
+      to: "uncontrolled-form",
+      title: "Uncontrolled Form",
+    },
+    {
       to: "react-form",
       title: "React Form",
     },

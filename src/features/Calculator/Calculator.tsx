@@ -136,7 +136,7 @@ const Calculator = () => {
   return (
     <div className="flex flex-col items-center gap-5 w-full space-y-5 p-5 h-screen transition-all duration-300">
       <h1>Calculator</h1>
-      <div className="h-[620px] py-5 px-3 pb-10 flex flex-col items-center justify-center gap-4 border border-gray-700 rounded-xl bg-gray-600 shadowinner shadow-xl">
+      <div className="h-[532px] max-h-[620px] w-3/5 max-w-[292px] py-5 px-3 pb-10 flex flex-col items-center justify-center gap-4 border border-gray-700 rounded-xl bg-gray-600 shadowinner shadow-xl">
         <CalculatorDisplay expression={expression} result={result} />
         <CalculatorKeypad
           onNumKeyClick={handleNumericClicks}

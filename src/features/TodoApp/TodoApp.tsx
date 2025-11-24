@@ -76,7 +76,7 @@ const myTodoReducer = (state: TodosArray, action: MyTodoAction): TodosArray => {
     case "UPDATE":
       return {
         ...state,
-        todos: state.todos.map((todo, ind):TodoState => {
+        todos: state.todos.map((todo, ind): TodoState => {
           if (action.payload.index === ind) {
             return { ...todo, status: action.payload.status };
           }
