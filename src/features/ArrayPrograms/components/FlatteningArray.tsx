@@ -2,7 +2,7 @@ import React from "react";
 
 const FlatteningArray = <T,>() => {
   const [inputValue, setInputValue] = React.useState<string>("");
-  const [result, setResult] = React.useState<T[] | string>([]);
+  const [result, setResult] = React.useState<T[] | T | string>([]);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
 
