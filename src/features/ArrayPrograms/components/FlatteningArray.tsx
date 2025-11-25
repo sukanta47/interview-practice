@@ -1,18 +1,18 @@
 import React from "react";
 
-const FlatteningArray = <T,>() => {
+const FlatteningArray = () => {
   const [inputValue, setInputValue] = React.useState<string>("");
-  const [result, setResult] = React.useState<T[] | T | string>([]);
+  const [result, setResult] = React.useState<any[] | string>([]);
 
   const inputRef = React.useRef<HTMLInputElement>(null);
 
-  const flattenArray = <T,>(arr: T[]): T[] => {
-    const flattenResult: T[] = [];
+  const flattenArray = (arr: any[]): any[] => {
+    const flattenResult: any[] = [];
     arr.forEach((a) => {
       if (Array.isArray(a)) {
         flattenResult.push(...flattenArray(a));
       } else {
-        flattenResult.push(a as T);
+        flattenResult.push(a);
       }
     });
     return flattenResult;
@@ -23,7 +23,7 @@ const FlatteningArray = <T,>() => {
       const val = inputRef.current.value;
       setInputValue(val);
       try {
-        const parsedArray = JSON.parse(val) as T[];
+        const parsedArray = JSON.parse(val) as any[];
         const flattened = flattenArray(parsedArray);
         setResult(flattened);
       } catch (error) {
@@ -53,8 +53,8 @@ const FlatteningArray = <T,>() => {
           onClick={() => {
             const testArray = [1, 5, [9, 10, [2, 6], 3], 8, 11, 32];
             setInputValue(JSON.stringify(testArray));
-            const result = flattenArray(testArray);
-            setResult(result);
+            const flattened = flattenArray(testArray);
+            setResult(flattened);
           }}
           className="p-3 bg-green-200"
         >
