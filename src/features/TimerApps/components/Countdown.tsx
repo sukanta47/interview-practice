@@ -12,7 +12,7 @@ const Countdown = () => {
     minutes: 0,
     seconds: 0,
   });
-  const[date] = useState(new Date());
+  const [date] = useState(new Date());
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -43,132 +43,100 @@ const Countdown = () => {
     setSelectedTime(null);
     setTimerDetails({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   };
-  const handleDateChange = ()=>{
-
-  }
+  const handleDateChange = () => {};
   return (
-    <div className="flex flex-col items-center text-violet-600 gap-10">
+    <div className="flex flex-col items-center text-violet-600 gap-10 px-3 sm:px-0">
+      {/* Title + Icon */}
       <div className="flex items-center gap-2">
-        <h1>Countdown Timer </h1>
-        <Hourglass size={48} xlinkTitle="Hourglass icon"/>
+        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-violet-600">
+          Countdown Timer
+        </h1>
+        <Hourglass
+          className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+          xlinkTitle="Hourglass icon"
+        />
       </div>
+
       {!selectedTime ? (
-        <div className="bg-violet-200 rounded-lg shadow-md p-5 h-64 w-2/3 flex flex-col items-center">
+        <div className="bg-violet-200 rounded-lg shadow-md p-5 h-auto w-full sm:w-4/5 md:w-2/3 flex flex-col items-center">
           <div className="flex flex-col items-center gap-5 w-full">
-            <nav className="flex gap-1 justify-start w-full bg-violet-300 p-2">
-            <button
-                className={`px-4 shadow-md ${
-                  mode === "duration"
-                    ? "bg-violet-600 border-1 border-red-900"
-                    : "bg-violet-300"
-                } text-white text-sm border-none outline-none`}
+            {/* Tab Switch */}
+            <nav className="flex flex-wrap gap-2 justify-center w-full bg-violet-300 p-2 rounded-md">
+              <button
+                className={`px-4 py-2 shadow-md rounded ${
+                  mode === "duration" ? "bg-violet-600" : "bg-violet-300"
+                } text-white text-sm`}
                 onClick={() => setMode("duration")}
               >
                 Use Duration
               </button>
               <button
-                className={`px-4 shadow-md ${
-                  mode === "date"
-                    ? "bg-violet-600 border-1 border-red-900"
-                    : "bg-violet-300"
-                } text-white text-sm border-none outline-none`}
+                className={`px-4 py-2 shadow-md rounded ${
+                  mode === "date" ? "bg-violet-600" : "bg-violet-300"
+                } text-white text-sm`}
                 onClick={() => setMode("date")}
               >
                 Use Date
               </button>
             </nav>
-            <form className="flex flex-col gap-2">
+
+            {/* Form */}
+            <form className="flex flex-col gap-4 w-full items-center">
               {mode === "date" ? (
                 <>
-                  <label
-                    htmlFor="date"
-                    className="text-sm font-semibold text-violet-600"
-                  >
-                    Select Date:{" "}
+                  <label className="text-sm font-semibold text-violet-600 w-full flex flex-col gap-1">
+                    Select Date:
                     <input
-                      className="border border-violet-400 rounded-md py-2 px-4 bg-violet-400 text-white focus:ring-0 focus:outline-none"
+                      className="border border-violet-400 rounded-md py-2 px-4 bg-violet-400 text-white focus:outline-none"
                       name="date"
                       type="date"
                       value={String(date)}
                       onChange={handleDateChange}
-                    ></input>
+                    />
                   </label>
-                  <label
-                    htmlFor="time"
-                    className="text-sm font-semibold text-violet-600"
-                  >
-                    Select Time:{" "}
+
+                  <label className="text-sm font-semibold text-violet-600 w-full flex flex-col gap-1">
+                    Select Time:
                     <input
-                      className="border border-violet-400 rounded-md py-2 px-4 bg-violet-400 text-white focus:ring-0 focus:outline-none"
+                      className="border border-violet-400 rounded-md py-2 px-4 bg-violet-400 text-white focus:outline-none"
                       name="time"
                       type="time"
-                    ></input>
+                    />
                   </label>
                 </>
               ) : (
-                <div className="flex gap-2 items-center">
-                  <div className="flex flex-col items-center">
-                    <input
-                      className="py-4 pl-3 pr-1 text-white bg-violet-400 font-semibold w-18 border-2 border-violet-600 rounded-lg shadow-md focus:outline-none focus:ring-0"
-                      type="number"
-                      name="days"
-                      min={0}
-                      max={365}
-                      value={String(timerDetails.days).padStart(2, `0`)}
-                      onChange={(e) => handleChange(e, "days")}
-                    />
-                    <label className="text-sm font-semibold text-violet-600">
-                      Days
-                    </label>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <input
-                      className="py-4 pl-3 pr-1 text-white bg-violet-400 font-semibold w-18 border-2 border-violet-600 rounded-lg shadow-md focus:outline-none focus:ring-0"
-                      type="number"
-                      name="hours"
-                      min={0}
-                      max={23}
-                      value={String(timerDetails.hours).padStart(2, `0`)}
-                      onChange={(e) => handleChange(e, "hours")}
-                    />
-                    <label className="text-sm font-semibold text-violet-600">
-                      Hours
-                    </label>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <input
-                      className="py-4 pl-3 pr-1 text-white bg-violet-400 font-semibold w-18 border-2 border-violet-600 rounded-lg shadow-md focus:outline-none focus:ring-0"
-                      type="number"
-                      name="minutes"
-                      min={0}
-                      max={59}
-                      value={String(timerDetails.minutes).padStart(2, `0`)}
-                      onChange={(e) => handleChange(e, "minutes")}
-                    />
-                    <label className="text-sm font-semibold text-violet-600">
-                      Minutes
-                    </label>
-                  </div>
-                  <div className="flex flex-col items-center">
-                    <input
-                      className="py-4 pl-3 pr-1 text-white bg-violet-400 font-semibold w-18 border-2 border-violet-600 rounded-lg shadow-md focus:outline-none focus:ring-0"
-                      type="number"
-                      name="seconds"
-                      id="seconds"
-                      min={0}
-                      max={59}
-                      value={String(timerDetails.seconds).padStart(2, `0`)}
-                      onChange={(e) => handleChange(e, "seconds")}
-                    />
-                    <label className="text-sm font-semibold text-violet-600">
-                      Seconds
-                    </label>
-                  </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full justify-items-center">
+                  {(
+                    [
+                      "days",
+                      "hours",
+                      "minutes",
+                      "seconds",
+                    ] as (keyof typeof timerDetails)[]
+                  ).map((field, idx) => (
+                    <div key={idx} className="flex flex-col items-center">
+                      <input
+                        className="py-3 pl-3 pr-1 text-white bg-violet-400 font-semibold w-20 border-2 border-violet-600 rounded-lg shadow-md focus:outline-none"
+                        type="number"
+                        min={0}
+                        max={
+                          field === "days" ? 365 : field === "hours" ? 23 : 59
+                        }
+                        value={String(timerDetails[field]).padStart(2, "0")}
+                        onChange={(e) => handleChange(e, field)}
+                      />
+                      <label className="text-sm font-semibold text-violet-600 mt-1 capitalize">
+                        {field}
+                      </label>
+                    </div>
+                  ))}
                 </div>
               )}
             </form>
+
+            {/* Buttons */}
             <button
-              className={`px-5 py-2 bg-violet-600 text-white text-sm font-semibold w-24 rounded-lg ${
+              className={`px-5 py-2 bg-violet-600 text-white text-sm font-semibold w-28 rounded-lg ${
                 !isButtonDisabled ? "opacity-100" : "opacity-50"
               }`}
               disabled={isButtonDisabled}

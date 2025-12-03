@@ -41,7 +41,9 @@ const ListSwapping = () => {
 
   return (
     <div className="flex flex-col gap-5 items-center">
-      <h1>Swap Fruits</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        Swap Fruits
+      </h1>
       <div className="grid grid-cols-3 gap-5 mt-10 justify-center h-auto">
         <div className="flex flex-col items-center">
           <h2 className="text-2xl font-semibold text-pink-900">Basket A</h2>

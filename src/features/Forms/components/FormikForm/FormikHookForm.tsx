@@ -64,11 +64,16 @@ const FormikHookForm = () => {
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <h1>Use Formik Form</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        Use Formik Form
+      </h1>
       <div className="mt-4 overflow-y-auto h-full w-full">
         <form
           className="grid grid-cols-1 md:grid-cols-2 gap-3 text-violet-800"
-          onSubmit={(e)=>{e.preventDefault();formik.submitForm()}}
+          onSubmit={(e) => {
+            e.preventDefault();
+            formik.submitForm();
+          }}
         >
           <div className="grid grid-cols-6">
             <label className="col-span-2" htmlFor="fname">
@@ -84,7 +89,7 @@ const FormikHookForm = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.password &&  formik.errors["fname"] && (
+              {formik.touched.password && formik.errors["fname"] && (
                 <p className="text-red-400 text-sm">{formik.errors["fname"]}</p>
               )}
             </div>
@@ -103,7 +108,7 @@ const FormikHookForm = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.password &&  formik.errors["lname"] && (
+              {formik.touched.password && formik.errors["lname"] && (
                 <p className="text-red-400 text-sm">{formik.errors["lname"]}</p>
               )}
             </div>
@@ -122,7 +127,7 @@ const FormikHookForm = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.password &&  formik.errors["email"] && (
+              {formik.touched.password && formik.errors["email"] && (
                 <p className="text-red-400 text-sm">{formik.errors["email"]}</p>
               )}
             </div>
@@ -141,7 +146,7 @@ const FormikHookForm = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.password &&  formik.errors["age"] && (
+              {formik.touched.password && formik.errors["age"] && (
                 <p className="text-red-400 text-sm">{formik.errors["age"]}</p>
               )}
             </div>
@@ -160,7 +165,7 @@ const FormikHookForm = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.password &&  formik.errors["phone"] && (
+              {formik.touched.password && formik.errors["phone"] && (
                 <p className="text-red-400 text-sm">{formik.errors["phone"]}</p>
               )}
             </div>
@@ -179,7 +184,7 @@ const FormikHookForm = () => {
                 onBlur={formik.handleBlur}
                 onChange={formik.handleChange}
               />
-              {formik.touched.password &&  formik.errors["city"] && (
+              {formik.touched.password && formik.errors["city"] && (
                 <p className="text-red-400 text-sm">{formik.errors["city"]}</p>
               )}
             </div>
@@ -200,7 +205,9 @@ const FormikHookForm = () => {
                 value={formik.values.password}
               />
               {formik.touched.password && formik.errors.password ? (
-                <div className="text-red-400 text-sm">{formik.errors.password}</div>
+                <div className="text-red-400 text-sm">
+                  {formik.errors.password}
+                </div>
               ) : null}
             </div>
           </div>
@@ -222,7 +229,9 @@ const FormikHookForm = () => {
               />
               {formik.touched.confirmPassword &&
               formik.errors.confirmPassword ? (
-                <div className="text-red-400 text-sm">{formik.errors.confirmPassword}</div>
+                <div className="text-red-400 text-sm">
+                  {formik.errors.confirmPassword}
+                </div>
               ) : null}
             </div>
           </div>

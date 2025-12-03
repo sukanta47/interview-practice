@@ -70,13 +70,18 @@ const Stopwatch = () => {
   };
 
   return (
-    <div className="flex flex-col gap-5 items-center justify-center space-y-5">
+    <div className="flex flex-col gap-5 items-center justify-center">
       <div className="flex items-center gap-2">
-        <h1>Stopwatch </h1>
-        <Timer size={48} xlinkTitle="stopwatch icon" />
+        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+          Stopwatch{" "}
+        </h1>
+        <Timer
+          className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"
+          xlinkTitle="stopwatch icon"
+        />
       </div>
-      <div className="bg-purple-200 rounded-lg shadow-md p-5 h-52 w-2/3 flex flex-col gap-10 items-center">
-        <div className="text-5xl font-mono text-pink-600">
+      <div className="bg-purple-200 rounded-lg shadow-md p-5 h-52 w-full max-w-xl flex flex-col gap-10 justify-center items-center">
+        <div className="text-4xl md:text-5xl font-mono text-pink-600">
           {formatTime(time)}
         </div>
 
@@ -136,15 +141,15 @@ const Stopwatch = () => {
             title="Record Lap"
             disabled={!isRunning}
             onClick={() => isRunning && handleAction("lap")}
-            className={`text-white p-2 rounded-md bg-gray-500 cursor-pointer focus:outline-none focus:ring-0 focus:border-0 ${isRunning ? "opacity-100" : "opacity-60 cursor-not-allowed"} ${
-              isTimerStarted ? "block" : "hidden"
-            }`}
+            className={`text-white p-2 rounded-md bg-gray-500 cursor-pointer focus:outline-none focus:ring-0 focus:border-0 ${
+              isRunning ? "opacity-100" : "opacity-60 cursor-not-allowed"
+            } ${isTimerStarted ? "block" : "hidden"}`}
           >
             <Redo />{" "}
           </button>
         </div>
       </div>
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 items-start">
         <h3 className="text-lg font-semibold">Laps</h3>
         {laps?.map((lap, index) => (
           <div key={`lap-${index}`}>

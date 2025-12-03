@@ -71,9 +71,17 @@ const ShowCountdown: React.FC<setSelectedTime> = ({ time, handleStop }) => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center gap-5 bg-violet-200 p-5 rounded-lg shadow-lg min-h-68">
-      <div id="countdown-display" className="flex gap-4 text-3xl mt-5">{formatTime()}</div>
-      <div className="flex gap-2">
+    <div className="flex flex-col items-center justify-center gap-6 bg-violet-200 p-5 rounded-lg shadow-lg min-h-68 w-full">
+      {/* Timer Display */}
+      <div
+        id="countdown-display"
+        className="flex flex-wrap justify-center gap-3 text-xl sm:text-2xl md:text-3xl mt-5"
+      >
+        {formatTime()}
+      </div>
+
+      {/* Controls */}
+      <div className="flex gap-3 flex-wrap justify-center">
         {remaining ? (
           <button
             className={`text-white p-3 rounded-lg ${
@@ -84,50 +92,54 @@ const ShowCountdown: React.FC<setSelectedTime> = ({ time, handleStop }) => {
             id="play-pause-btn"
           >
             {isRunning ? (
-              <Pause className="h-10 w-10" xlinkTitle="Pause"/>
+              <Pause className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10" />
             ) : (
-              <Play className="h-10 w-10" xlinkTitle="Resume" />
+              <Play className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10" />
             )}
           </button>
-        ) : (
-          ""
-        )}
+        ) : null}
 
         {remaining ? (
           <button
-            className={`text-white p-3 rounded-lg bg-red-400`}
-            onClick={() => {setIsOpen(true);handleStop();}}
+            className="text-white p-3 rounded-lg bg-red-400"
+            onClick={() => {
+              setIsOpen(true);
+              handleStop();
+            }}
             title="Stop timer"
             id="stop-btn"
           >
-            <StopCircle className="h-10 w-10" />
+            <StopCircle className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10" />
           </button>
         ) : (
           <button
-            className={`text-white p-3 rounded-lg bg-green-600`}
+            className="text-white p-3 rounded-lg bg-green-600"
             onClick={handleStop}
             title="Done"
             id="done-btn"
           >
-            <CircleCheckBig className="h-10 w-10" />
+            <CircleCheckBig className="w-7 h-7 sm:w-9 sm:h-9 md:w-10 md:h-10" />
           </button>
         )}
       </div>
+
+      {/* Modal */}
       {isOpen && (
         <AlertModal onClose={handleClose}>
-          <div className="p-5 flex justify-center items-center min-h-28">
-            Are you sure to end timer?
+          <div className="p-5 flex justify-center items-center text-center text-base sm:text-lg min-h-28">
+            Are you sure you want to end the timer?
           </div>
-          <div className="flex justify-end gap-3">
+
+          <div className="flex justify-end gap-3 flex-wrap">
             <button
               onClick={handleClose}
-              className="bg-gray-300 px-3 py-2 text-gray-600 rounded-lg min-w-18"
+              className="bg-gray-300 px-4 py-2 text-gray-600 rounded-lg min-w-20"
             >
               Close
             </button>
             <button
               onClick={handleStop}
-              className="bg-blue-500 px-3 py-2 text-white rounded-lg min-w-18"
+              className="bg-blue-500 px-4 py-2 text-white rounded-lg min-w-20"
             >
               Ok
             </button>

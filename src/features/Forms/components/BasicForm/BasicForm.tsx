@@ -13,7 +13,9 @@ const BasicForm = () => {
   };
   return (
     <div className="flex flex-col items-center gap-5 w-full">
-      <h2>Uncontrolled form</h2>
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        Uncontrolled form
+      </h1>
       <form
         className="flex flex-col gap-3 text-violet-800 w-2/5"
         onSubmit={handleSubmit}

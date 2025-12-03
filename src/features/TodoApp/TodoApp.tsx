@@ -125,7 +125,9 @@ const TodoApp = () => {
   return (
     <>
       <div className="flex flex-col items-center gap-5 w-full">
-        <h1>Todo App</h1>
+        <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+          Todo App
+        </h1>
         <div className="mt-4 overflow-y-auto h-full w-full flex flex-col gap-4">
           <div className="p-8 rounded-lg w-full bg-purple-200 text-violet-600 flex items-center justify-between shadow-md">
             <h2 className="text-3xl lg:text-5xl">Create a new todo</h2>

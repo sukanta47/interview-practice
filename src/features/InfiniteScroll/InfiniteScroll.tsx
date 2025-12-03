@@ -52,7 +52,9 @@ const InfiniteScroll = () => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1>Infinite Scroll Posts</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        Infinite Scroll Posts
+      </h1>
       <div className="posts-list">
         {posts.map((post) => (
           <div

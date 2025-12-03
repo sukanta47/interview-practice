@@ -18,7 +18,7 @@ const ProblemsLayout: React.FC<Props> = ({ title, problems }) => {
 
   return (
     <div className="w-full mx-auto max-w-7xl">
-      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold mb-6 md:mb-10 text-gray-800">
+      <h1 className="text-2xl sm:text-3xl mb-6 md:mb-10 lg:text-5xl font-bold text-pink-600">
         {title}
       </h1>
 

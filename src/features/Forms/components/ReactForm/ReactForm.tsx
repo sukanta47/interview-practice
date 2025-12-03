@@ -100,7 +100,9 @@ const ReactForm = () => {
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <h1>React Form</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        React Form
+      </h1>
       <div className="mt-4 overflow-y-auto h-[28rem]">
         <form
           className="flex flex-col gap-3 text-violet-800"

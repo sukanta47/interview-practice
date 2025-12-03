@@ -54,13 +54,15 @@ const FormikForm = () => {
       .required("Confirm password is required"),
   });
 
-  const onSubmit = (values:RegistrationFormSchema) => {
-    console.log(values)
-  }
+  const onSubmit = (values: RegistrationFormSchema) => {
+    console.log(values);
+  };
 
   return (
     <div className="flex flex-col items-center gap-5">
-      <h1>Formik Component Form</h1>
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        Formik Component Form
+      </h1>
       <div className="mt-4 overflow-y-auto h-full w-full">
         <Formik
           initialValues={initialValue}
@@ -70,7 +72,10 @@ const FormikForm = () => {
           {({ isSubmitting }) => (
             <Form className="grid grid-cols-1 md:grid-cols-2 gap-5 text-violet-800 p-5">
               <div className="flex flex-col">
-                <label className="col-span-2 font-semibold text-sm" htmlFor="fname">
+                <label
+                  className="col-span-2 font-semibold text-sm"
+                  htmlFor="fname"
+                >
                   First name:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -82,7 +87,10 @@ const FormikForm = () => {
                 <ErrorMessage name="fname" className="text-red-400 text-sm" />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="lname" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="lname"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   Last name:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -94,7 +102,10 @@ const FormikForm = () => {
                 <ErrorMessage name="lname" className="error" />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="email" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="email"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   Email:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -106,7 +117,10 @@ const FormikForm = () => {
                 <ErrorMessage name="email" className="text-red-400 text-sm" />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="age" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="age"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   Age:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -118,7 +132,10 @@ const FormikForm = () => {
                 <ErrorMessage name="age" className="text-red-400 text-sm" />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="phone" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="phone"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   Phone:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -130,7 +147,10 @@ const FormikForm = () => {
                 <ErrorMessage name="phone" className="text-red-400 text-sm" />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="city" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="city"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   City:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -142,7 +162,10 @@ const FormikForm = () => {
                 <ErrorMessage name="city" className="text-red-400 text-sm" />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="password" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="password"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   Password:<span className="text-red-600">*</span>
                 </label>
                 <Field
@@ -158,7 +181,10 @@ const FormikForm = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <label htmlFor="confirmPassword" className="col-span-2 font-semibold text-sm">
+                <label
+                  htmlFor="confirmPassword"
+                  className="col-span-2 font-semibold text-sm"
+                >
                   Confirm Password:<span className="text-red-600">*</span>
                 </label>
                 <Field

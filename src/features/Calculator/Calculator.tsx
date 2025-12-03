@@ -67,7 +67,11 @@ const Calculator = () => {
     }
     if (name === "ChangeSign") {
       setExpression((prev) =>
-        sign ? (prev.charAt(0) !== "-" ? "-" + prev : String(Number(prev)*(-1))) : prev
+        sign
+          ? prev.charAt(0) !== "-"
+            ? "-" + prev
+            : String(Number(prev) * -1)
+          : prev
       );
       setSign((prev) => !prev);
     } else if (key) setExpression((prev) => prev + key);
@@ -134,9 +138,14 @@ const Calculator = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-5 w-full space-y-5 p-5 h-screen transition-all duration-300">
-      <h1>Calculator</h1>
-      <div className="h-[532px] max-h-[620px] w-3/5 max-w-[292px] py-5 px-3 pb-10 flex flex-col items-center justify-center gap-4 border border-gray-700 rounded-xl bg-gray-600 shadowinner shadow-xl">
+    <div className="flex flex-col items-center gap-5 w-full h-screen transition-all duration-300">
+      <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
+        Calculator
+      </h1>
+      <div className="h-[532px] max-h-[620px] max-w-[292px] py-3 px-3 pb-5 mb-5 md:mb-10 flex flex-col items-center justify-center gap-2 md:gap-4 border border-gray-700 rounded-xl bg-gray-600 shadow-inner shadow-xl">
+        <p className="text-sm text-white/80 self-center relative top-0">
+          CASIO
+        </p>
         <CalculatorDisplay expression={expression} result={result} />
         <CalculatorKeypad
           onNumKeyClick={handleNumericClicks}
@@ -144,9 +153,6 @@ const Calculator = () => {
           onOperatorKeyClick={handleOperatorButtonClick}
         />
       </div>
-      <p className="text-sm text-white/80 self-center relative bottom-18">
-        CASIO
-      </p>
     </div>
   );
 };

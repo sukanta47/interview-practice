@@ -70,9 +70,14 @@ const AppLayout: React.FC = () => {
         >
           <Menu className="w-6 h-6" />
         </button>
-        <h2 className="block md:hidden text-2xl font-semibold text-violet-700">
-          Interview Practice
-        </h2>
+        <div className="flex flex-col">
+          <h2 className="block md:hidden text-2xl font-semibold text-violet-700">
+            Interview Practice
+          </h2>
+          <p className="text-xs font-semibold text-violet-500 self-end">
+            by Sukanta Biswas
+          </p>
+        </div>
         <span className="font-semibold text-gray-700"></span>
       </div>
 
@@ -111,7 +116,7 @@ const AppLayout: React.FC = () => {
       </aside>
 
       {/* ---------- Main Content ---------- */}
-      <main className="flex-1 mt-14 md:mt-0 p-4 md:p-8 text-pink-600 h-screen overflow-y-auto">
+      <main className="flex-1 mt-18 md:mt-0 p-4 md:p-8 text-pink-600 h-screen overflow-y-auto">
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />
         </Suspense>
