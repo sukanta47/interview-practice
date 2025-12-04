@@ -1,4 +1,10 @@
-import { CircleCheckBig, Pause, Play, StopCircle } from "lucide-react";
+import {
+  CircleCheckBig,
+  Hourglass,
+  Pause,
+  Play,
+  StopCircle,
+} from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import AlertModal from "../../../components/ui/AlertModal";
 
@@ -11,6 +17,23 @@ const ShowCountdown: React.FC<setSelectedTime> = ({ time, handleStop }) => {
   const [remaining, setRemaining] = useState(time);
   const [isOpen, setIsOpen] = useState(false);
   const intervalRef = useRef(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    audioRef.current = new Audio("/alarm_classic.mp3");
+    audioRef.current.load();
+    audioRef.current.loop = true;
+  }, []);
+  //alarm tone play
+  useEffect(() => {
+    if (remaining === 0) {
+      if (audioRef.current) {
+        audioRef.current.play().catch((err) => console.log(err));
+        triggerVibration();
+      }
+      return;
+    }
+  }, [remaining]);
 
   useEffect(() => {
     if (remaining <= 0) return;
@@ -29,6 +52,20 @@ const ShowCountdown: React.FC<setSelectedTime> = ({ time, handleStop }) => {
     }, 1000);
     return () => clearInterval(intervalRef.current);
   }, [remaining, isRunning]);
+
+  const triggerVibration = () => {
+    if (navigator.vibrate) {
+      navigator.vibrate([200, 100, 200, 100, 500]); // vibration pattern
+    }
+  };
+
+  const stopHandler = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
+    }
+    handleStop();
+  };
 
   const formatTime = () => {
     const days = Math.floor(remaining / 86400);
@@ -73,12 +110,21 @@ const ShowCountdown: React.FC<setSelectedTime> = ({ time, handleStop }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-6 bg-violet-200 p-5 rounded-lg shadow-lg min-h-68 w-full">
       {/* Timer Display */}
-      <div
-        id="countdown-display"
-        className="flex flex-wrap justify-center gap-3 text-xl sm:text-2xl md:text-3xl mt-5"
-      >
-        {formatTime()}
-      </div>
+      {remaining !== 0 ? (
+        <div
+          id="countdown-display"
+          className="flex flex-wrap justify-center gap-3 text-xl sm:text-2xl md:text-3xl mt-5"
+        >
+          {formatTime()}
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center gap-2">
+          <h3 className="text-2xl md:text-3xl lg:text-4xl text-violet-600 font-semibold">
+            Time's up!
+          </h3>
+          <Hourglass className="w-14 h-14 text-violet-600 shake" />
+        </div>
+      )}
 
       {/* Controls */}
       <div className="flex gap-3 flex-wrap justify-center">
@@ -114,7 +160,7 @@ const ShowCountdown: React.FC<setSelectedTime> = ({ time, handleStop }) => {
         ) : (
           <button
             className="text-white p-3 rounded-lg bg-green-600"
-            onClick={handleStop}
+            onClick={stopHandler}
             title="Done"
             id="done-btn"
           >
