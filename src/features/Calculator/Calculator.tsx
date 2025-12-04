@@ -17,6 +17,25 @@ const Calculator = () => {
   const [sign, setSign] = useState(true);
 
   useEffect(() => {
+    let lastTouchEnd = 0;
+
+    const handler = (e: TouchEvent) => {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        // Prevent double tap zoom
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    };
+
+    document.addEventListener("touchend", handler, { passive: false });
+
+    return () => {
+      document.removeEventListener("touchend", handler);
+    };
+  }, []);
+
+  useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       const pressedKey = e.key;
       if (!allowedKey.has(pressedKey)) return;
