@@ -12,8 +12,7 @@ export const arrayProblems: ProblemItem[] = [
     description:
       "Given an array of numbers, group the consecutive identical numbers in sub-arrays in an array.",
     explanation: "",
-    problemStatement: `
-    Write a function that takes an array of numbers and groups the consecutive identical numbers into sub-arrays.
+    problemStatement: `Write a function that takes an array of numbers and groups the consecutive identical numbers into sub-arrays.
 
     For example:
     Input: [21, 1, 3, 22, 2, 4, 23, 5, 24, 6, 71, 31]
@@ -46,8 +45,7 @@ function brokenArray(arr) {const brokenArray = (arr: number[]) => {
     title: "Flatten Nested Array",
     description: "Flatten a nested array into a single-level array.",
     explanation: "",
-    problemStatement: `
-    Write a function that takes a nested array and flattens it into a single-level array.
+    problemStatement: `Write a function that takes a nested array and flattens it into a single-level array.
 
     For example:
     Input: [0,[1,2],[3,[4,5,[6],7]]]

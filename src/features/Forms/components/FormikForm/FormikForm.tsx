@@ -1,8 +1,9 @@
-import { ErrorMessage, Field, Form, Formik, useFormik } from "formik";
 import React from "react";
+import { Form, Formik } from "formik";
 import * as Yup from "yup";
+import FormField from "./FormField";
 
-interface RegistrationFormSchema {
+export interface RegistrationFormSchema {
   fname: string;
   lname: string;
   email: string;
@@ -24,185 +25,58 @@ const FormikForm = () => {
     password: "",
     confirmPassword: "",
   };
+
   const formValidationSchema = Yup.object({
-    fname: Yup.string()
-      .required("First name is required")
-      .min(3, "First name should be at least 3 characters long")
-      .max(20, "First name cannot exceed 20 characters"),
-    lname: Yup.string()
-      .required("Last name is required")
-      .min(3, "First name should be at least 3 characters long")
-      .max(20, "First name cannot exceed 20 characters"),
-    email: Yup.string().email("Invalid email id").required("Email is required"),
-    age: Yup.number()
-      .min(5, "Minimum age is 5")
-      .max(150, "Age cannot exceed 150")
-      .required("Age is required"),
-    phone: Yup.string()
-      .length(10, "Phone number should be 10 digits")
-      .required("Phone number is required"),
-    city: Yup.string().required("City is required"),
+    fname: Yup.string().required().min(3).max(20),
+    lname: Yup.string().required().min(3).max(20),
+    email: Yup.string().email().required(),
+    age: Yup.number().required().min(5).max(150),
+    phone: Yup.string().required().length(10),
+    city: Yup.string().required(),
     password: Yup.string()
-      .min(8, "Password must be minimumm 8 characters")
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/,
-        "Password must contain at least one uppercase letter, one lowercase letter, and one number"
-      )
-      .required("Password is required"),
+      .min(8)
+      .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/)
+      .required(),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), ""], "Password must match")
-      .required("Confirm password is required"),
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required(),
   });
 
   const onSubmit = (values: RegistrationFormSchema) => {
-    console.log(values);
+    console.log("Form submit:", values);
   };
 
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-6 px-4">
       <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
         Formik Component Form
       </h1>
-      <div className="mt-4 overflow-y-auto h-full w-full">
+
+      <div className="mt-4 w-full">
         <Formik
           initialValues={initialValue}
           validationSchema={formValidationSchema}
           onSubmit={onSubmit}
         >
           {({ isSubmitting }) => (
-            <Form className="grid grid-cols-1 md:grid-cols-2 gap-5 text-violet-800 p-5">
-              <div className="flex flex-col">
-                <label
-                  className="col-span-2 font-semibold text-sm"
-                  htmlFor="fname"
-                >
-                  First name:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  type="text"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                  name="fname"
-                  placeholder="Enter first name"
-                />
-                <ErrorMessage name="fname" className="text-red-400 text-sm" />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="lname"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  Last name:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  type="text"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                  name="lname"
-                  placeholder="Enter last name"
-                />
-                <ErrorMessage name="lname" className="error" />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="email"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  Email:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  type="email"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                  name="email"
-                  placeholder="Enter your email"
-                />
-                <ErrorMessage name="email" className="text-red-400 text-sm" />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="age"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  Age:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  type="text"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                  name="age"
-                  placeholder="Enter your age"
-                />
-                <ErrorMessage name="age" className="text-red-400 text-sm" />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="phone"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  Phone:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  type="phone"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                  name="phone"
-                  placeholder="Enter phone number"
-                />
-                <ErrorMessage name="phone" className="text-red-400 text-sm" />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="city"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  City:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  type="text"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                  name="city"
-                  placeholder="Enter your city"
-                />
-                <ErrorMessage name="city" className="text-red-400 text-sm" />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="password"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  Password:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  id="password"
-                  name="password"
-                  type="password"
-                  placeholder="Enter password"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                />
-                <ErrorMessage
-                  name="password"
-                  className="text-red-400 text-sm"
-                />
-              </div>
-              <div className="flex flex-col">
-                <label
-                  htmlFor="confirmPassword"
-                  className="col-span-2 font-semibold text-sm"
-                >
-                  Confirm Password:<span className="text-red-600">*</span>
-                </label>
-                <Field
-                  id="confirmPassword"
-                  name="confirmPassword"
-                  type="password"
-                  placeholder="Enter confirm password"
-                  className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                />
-                <ErrorMessage
-                  name="confirmPassword"
-                  className="text-red-400 text-sm"
-                />
-              </div>
+            <Form className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-violet-800 w-full md:w-6/7 lg:w-3/4 mx-auto">
+              <FormField label="First Name" name="fname" />
+              <FormField label="Last Name" name="lname" />
+              <FormField label="Email" name="email" type="email" />
+              <FormField label="Age" name="age" />
+              <FormField label="Phone" name="phone" type="tel" />
+              <FormField label="City" name="city" />
+              <FormField label="Password" name="password" type="password" />
+              <FormField
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password"
+              />
+
               <button
-                className="p-3 bg-green-600 text-white font-semibold w-1/3"
                 type="submit"
                 disabled={isSubmitting}
+                className="col-span-1 sm:col-span-2 bg-green-600 text-white font-semibold py-3 rounded-md hover:bg-green-700 transition"
               >
                 Submit
               </button>

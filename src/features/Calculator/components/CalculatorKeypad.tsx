@@ -24,22 +24,30 @@ const CalculatorKeypad = ({
   onContolKeyClick,
   onOperatorKeyClick,
 }: CalculatorKeypadProps) => {
-  const getIcon = ({ name, key, keyCode }: { name: string; key: string; keyCode:string }) => {
+  const getIcon = ({
+    name,
+    key,
+    keyCode,
+  }: {
+    name: string;
+    key: string;
+    keyCode: string;
+  }) => {
     switch (name) {
       case "Backspace":
-        return <ArrowLeft name={keyCode}/>;
+        return <ArrowLeft name={keyCode} />;
       case "Percent":
-        return <Percent name={keyCode}/>;
+        return <Percent name={keyCode} />;
       case "Divide":
-        return <Divide name={keyCode}/>;
+        return <Divide name={keyCode} />;
       case "Multiply":
-        return <X name={keyCode}/>;
+        return <X name={keyCode} />;
       case "Subtract":
-        return <Minus name={keyCode}/>;
+        return <Minus name={keyCode} />;
       case "Add":
-        return <Plus name={keyCode}/>;
+        return <Plus name={keyCode} />;
       case "Equal":
-        return <Equal name={keyCode}/>;
+        return <Equal name={keyCode} />;
 
       default:
         return key;
@@ -73,7 +81,9 @@ const CalculatorKeypad = ({
               className={`p-4 flex justify-center items-center border-none rounded-full text-lg text-white bg-${
                 nkey.bgColor
               } hover:bg-${nkey.bgColor.split("-")[0]}-800 w-14 h-14`}
-              onClick={() => onNumKeyClick(nkey)}
+              onPointerDown={() => {
+                onNumKeyClick(nkey);
+              }}
             >
               {getIcon(nkey)}
             </button>

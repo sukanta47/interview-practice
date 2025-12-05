@@ -21,14 +21,7 @@ const ReactForm = () => {
     phone: "",
     city: "",
   };
-  const FieldLabel = {
-    fname: "First Name",
-    lname: "Last Name",
-    email: "Email",
-    age: "Age",
-    phone: "Phone",
-    city: "City",
-  };
+
   const [formData, setFormData] =
     useState<RegistrationFormSchema>(initialValue);
   const [formError, setFormError] = useState<FormErrorSchema>({
@@ -99,128 +92,69 @@ const ReactForm = () => {
   };
 
   return (
-    <div className="flex flex-col items-center gap-5">
+    <div className="flex flex-col items-center gap-5 px-4">
       <h1 className="text-2xl sm:text-3xl lg:text-5xl font-bold text-pink-600">
         React Form
       </h1>
-      <div className="mt-4 overflow-y-auto h-[28rem]">
+
+      <div className="mt-4 overflow-y-auto h-[28rem] w-full">
         <form
-          className="flex flex-col gap-3 text-violet-800"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-violet-800 w-full md:w-6/7 lg:w-3/4 mx-auto"
           onSubmit={handleSubmit}
         >
-          <div className="grid grid-cols-5">
-            <label className="col-span-1" htmlFor="fname">
-              First name:<span className="text-red-600">*</span>
-            </label>
-            <div className="col-span-4">
-              <input
-                type="text"
-                className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                name="fname"
-                value={formData.fname}
-                placeholder="Enter first name"
-                onChange={handleChange}
-              />
-              {formError && formError["fname"] && (
-                <p className="text-red-400 text-sm">{formError["fname"]}</p>
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-5">
-            <label htmlFor="lname" className="col-span-1">
-              Last name:<span className="text-red-600">*</span>
-            </label>
-            <div className="col-span-4">
-              <input
-                type="text"
-                className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                name="lname"
-                value={formData.lname}
-                placeholder="Enter last name"
-                onChange={handleChange}
-              />
-              {formError && formError["lname"] && (
-                <p className="text-red-400 text-sm">{formError["lname"]}</p>
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-5">
-            <label htmlFor="email" className="col-span-1">
-              Email:<span className="text-red-600">*</span>
-            </label>
-            <div className="col-span-4">
-              <input
-                type="email"
-                className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                name="email"
-                value={formData.email}
-                placeholder="Enter your email"
-                onChange={handleChange}
-              />
-              {formError && formError["email"] && (
-                <p className="text-red-400 text-sm">{formError["email"]}</p>
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-5">
-            <label htmlFor="age" className="col-span-1">
-              Age:<span className="text-red-600">*</span>
-            </label>
-            <div className="col-span-4">
-              <input
-                type="text"
-                className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                name="age"
-                value={formData.age}
-                min={1}
-                max={150}
-                placeholder="Enter your age"
-                onChange={handleChange}
-              />
-              {formError && formError["age"] && (
-                <p className="text-red-400 text-sm">{formError["age"]}</p>
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-5">
-            <label htmlFor="phone" className="col-span-1">
-              Phone:<span className="text-red-600">*</span>
-            </label>
-            <div className="col-span-4">
-              <input
-                type="phone"
-                className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                name="phone"
-                value={formData.phone}
-                placeholder="Enter phone number"
-                onChange={handleChange}
-              />
-              {formError && formError["phone"] && (
-                <p className="text-red-400 text-sm">{formError["phone"]}</p>
-              )}
-            </div>
-          </div>
-          <div className="grid grid-cols-5">
-            <label htmlFor="city" className="col-span-1">
-              City:<span className="text-red-600">*</span>
-            </label>
-            <div className="col-span-4">
-              <input
-                type="text"
-                className="border border-1 border-blue-400 rounded-md px-4 py-2 focus:bolder-blue-400 focus:border-2 focus:outline-blue-300"
-                name="city"
-                value={formData.city}
-                placeholder="Enter your city"
-                onChange={handleChange}
-              />
-              {formError && formError["city"] && (
-                <p className="text-red-400 text-sm">{formError["city"]}</p>
-              )}
-            </div>
-          </div>
+          <FormField
+            label="First Name"
+            name="fname"
+            value={formData.fname}
+            error={formError?.fname}
+            onChange={handleChange}
+          />
+
+          <FormField
+            label="Last Name"
+            name="lname"
+            value={formData.lname}
+            error={formError?.lname}
+            onChange={handleChange}
+          />
+
+          <FormField
+            label="Email"
+            name="email"
+            type="email"
+            value={formData.email}
+            error={formError?.email}
+            onChange={handleChange}
+          />
+
+          <FormField
+            label="Age"
+            name="age"
+            value={formData.age}
+            error={formError?.age}
+            onChange={handleChange}
+          />
+
+          <FormField
+            label="Phone"
+            name="phone"
+            type="tel"
+            value={formData.phone}
+            error={formError?.phone}
+            onChange={handleChange}
+          />
+
+          <FormField
+            label="City"
+            name="city"
+            value={formData.city}
+            error={formError?.city}
+            onChange={handleChange}
+          />
+
           <button
             type="submit"
-            className="p-3 bg-violet-600 text-white font-semibold w-1/3"
+            className="col-span-1 sm:col-span-2 py-3 bg-violet-600 text-white font-semibold rounded-md hover:bg-violet-700 transition"
           >
             Submit
           </button>
@@ -231,3 +165,45 @@ const ReactForm = () => {
 };
 
 export default ReactForm;
+
+const FormField = ({
+  label,
+  name,
+  value,
+  error,
+  onChange,
+  type = "text",
+}: {
+  label: string;
+  name: string;
+  type?: string;
+  value: string;
+  error?: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}) => {
+  return (
+    <div className="flex flex-col gap-1">
+      <label htmlFor={name} className="font-semibold text-sm">
+        {label} <span className="text-red-600">*</span>
+      </label>
+
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        placeholder={`Enter ${label.toLowerCase()}`}
+        onChange={onChange}
+        className={`border rounded-md px-4 py-2 focus:ring-2 focus:outline-none 
+          ${
+            error
+              ? "border-red-500 focus:ring-red-300"
+              : "border-blue-400 focus:ring-blue-300"
+          }
+        `}
+      />
+
+      {error && <p className="text-red-500 text-sm">{error}</p>}
+    </div>
+  );
+};

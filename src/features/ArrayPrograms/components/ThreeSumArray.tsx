@@ -31,7 +31,7 @@ const ThreeSumArray = () => {
   return (
     <div className="grid lg:grid-cols-2 gap-2 lg:gap-5 w-full lg:min-w-2xl mx-auto">
       <div className="flex flex-col gap-2">
-        <div className="flex gap-2">
+        <div className="flex flex-col md:flex-col gap-2">
           <input
             className="p-3 border rounded-lg"
             type="text"

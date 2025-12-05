@@ -44,18 +44,16 @@ const ProblemDetails = () => {
 
       {/* Problem Statement */}
       <div className="bg-gray-50 dark:bg-dark-700 p-4 rounded-lg mb-6">
-        <span className="font-semibold text-gray-800 dark:text-gray-200">
-          Problem Statement:
-        </span>
-        <pre className="mt-2 text-sm text-gray-700 dark:text-gray-300 whitespace-pre-wrap">
+        <span className="font-semibold text-pink-600">Problem Statement:</span>
+        <pre className="mt-2 text-sm text-gray-600 whitespace-pre-line">
           {problem.problemStatement}
         </pre>
       </div>
 
       {/* Render Demo Component */}
       {problem.component && (
-        <div className="my-6 flex justify-center items-center">
-          <div className="w-full max-w-xl">{problem.component}</div>
+        <div className="my-6 flex justify-center items-center w-full">
+          {problem.component}
         </div>
       )}
 
