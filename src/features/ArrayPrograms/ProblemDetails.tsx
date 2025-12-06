@@ -38,7 +38,7 @@ const ProblemDetails = () => {
       <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-3">
         {problem.title}
       </h3>
-      <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+      <p className="text-gray-700 leading-relaxed mb-4">
         {problem.explanation}
       </p>
 

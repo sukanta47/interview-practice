@@ -6,7 +6,7 @@ interface ModalProps {
   children: React.ReactNode;
 }
 
-const Modal = ({ onClose, children }:ModalProps) => {
+const Modal = ({ onClose, children }: ModalProps) => {
   const modalRoot = document.getElementById("modal-root");
   if (!modalRoot) return null;
 
@@ -16,7 +16,7 @@ const Modal = ({ onClose, children }:ModalProps) => {
       onClick={onClose}
     >
       <div
-        className="bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-6 relative max-w-md w-[90%] animate-fadeIn"
+        className="bg-gray-200 rounded-2xl shadow-xl p-6 relative max-w-md w-[90%] animate-fadeIn"
         onClick={(e) => e.stopPropagation()}
       >
         <button
